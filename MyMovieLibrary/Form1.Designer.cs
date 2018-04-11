@@ -59,8 +59,9 @@
             // 
             this.txtMovie.Location = new System.Drawing.Point(267, 55);
             this.txtMovie.Name = "txtMovie";
-            this.txtMovie.Size = new System.Drawing.Size(161, 20);
+            this.txtMovie.Size = new System.Drawing.Size(1059, 20);
             this.txtMovie.TabIndex = 2;
+            this.txtMovie.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMovie_KeyPress);
             // 
             // label1
             // 
@@ -89,17 +90,17 @@
             // 
             // txtResult
             // 
-            this.txtResult.Location = new System.Drawing.Point(487, 12);
+            this.txtResult.Location = new System.Drawing.Point(51, 263);
             this.txtResult.Multiline = true;
             this.txtResult.Name = "txtResult";
-            this.txtResult.Size = new System.Drawing.Size(828, 385);
+            this.txtResult.Size = new System.Drawing.Size(304, 149);
             this.txtResult.TabIndex = 6;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1339, 409);
+            this.ClientSize = new System.Drawing.Size(1351, 779);
             this.Controls.Add(this.txtResult);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtPlatform);

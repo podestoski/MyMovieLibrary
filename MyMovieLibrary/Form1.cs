@@ -13,10 +13,14 @@ namespace MyMovieLibrary
     public partial class Form1 : Form
     {
         List<Movie> moviesList = new List<Movie>();
+        APIConnection con = new APIConnection();
+        bool refreshAutoComplete = true;
 
         public Form1()
         {
             InitializeComponent();
+            /*txtMovie.AutoCompleteMode = AutoCompleteMode.Suggest;
+            txtMovie.AutoCompleteSource = AutoCompleteSource.CustomSource;*/
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -29,9 +33,18 @@ namespace MyMovieLibrary
                 listMovies.Items.Add(movie.title);
             }*/
 
-            
-            APIConnection con = new APIConnection();
-            txtResult.Text =  con.tryConnetion();
+            //txtResult.Text =  con.searchMovie(txtMovie.Text);
+        }
+
+        private void txtMovie_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            /*if (txtMovie.Text.Length > 2 && refreshAutoComplete)
+            {
+                if (txtMovie.AutoCompleteCustomSource.Count > 0)
+                    txtMovie.AutoCompleteCustomSource.Clear();
+                txtMovie.AutoCompleteCustomSource = con.preSearchMovie(txtMovie.Text);
+                refreshAutoComplete = false;
+            }*/
         }
     }
 }
