@@ -14,7 +14,9 @@ namespace MyMovieLibrary
     {
         List<Movie> moviesList = new List<Movie>();
         APIConnection con = new APIConnection();
-        bool refreshAutoComplete = true;
+       // bool refreshAutoComplete = true;
+
+        private const string NO_POSTER_IMAGE_PATH = @"Images\no-photo.jpg";
 
         public Form1()
         {
@@ -25,15 +27,25 @@ namespace MyMovieLibrary
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            /*moviesList.Add(new Movie(txtMovie.Text, txtPlatform.Text));
-
-            listMovies.Clear();
-            foreach (Movie movie in moviesList)
+            List<Results> results = con.searchMovie(txtMovie.Text);
+            listMoviesResults.Clear();
+            moviesImages.Images.Add("No-photo", Properties.Resources.no_photo);
+            foreach (Results result in results)
             {
-                listMovies.Items.Add(movie.title);
-            }*/
+                var item = listMoviesResults.Items.Add(result.title);
+                listMoviesResults.LargeImageList = moviesImages;
+                if (!String.IsNullOrEmpty(result.poster_path))
+                {
+                    string imagePath = @"c:\MyMovieLibrary\temp" + result.poster_path;
+                    moviesImages.Images.Add(result.title, Image.FromFile(imagePath));
+                    item.ImageKey = result.title;
+                }
+                else
+                {
+                    item.ImageKey = "No-photo";
+                }
 
-            //txtResult.Text =  con.searchMovie(txtMovie.Text);
+            }
         }
 
         private void txtMovie_KeyPress(object sender, KeyPressEventArgs e)
@@ -45,6 +57,11 @@ namespace MyMovieLibrary
                 txtMovie.AutoCompleteCustomSource = con.preSearchMovie(txtMovie.Text);
                 refreshAutoComplete = false;
             }*/
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
         }
     }
 }
