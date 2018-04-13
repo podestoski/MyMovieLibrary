@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace MyMovieLibrary
 {
-    class Results
+    class SearchMovieRootResult
+    {
+        public int page;
+        public int total_results;
+        public int total_pages;
+        public List<SearchMovieResult> results;
+    }
+
+    class SearchMovieResult
     {
         public int vote_count;
         public int id;
@@ -22,13 +30,5 @@ namespace MyMovieLibrary
         public bool adult;
         public string overview;
         public string release_date;
-    }
-
-    class RootResult
-    {
-        public int page;
-        public int total_results;
-        public int total_pages;
-        public List<Results> results;
-    }
+    }    
 }
