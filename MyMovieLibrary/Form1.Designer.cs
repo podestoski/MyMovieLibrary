@@ -37,14 +37,19 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.moviesImages = new System.Windows.Forms.ImageList(this.components);
             this.pnlDetails = new System.Windows.Forms.Panel();
+            this.picNoVideo = new System.Windows.Forms.PictureBox();
+            this.cbVideos = new System.Windows.Forms.ComboBox();
+            this.lblVideos = new System.Windows.Forms.Label();
+            this.btnClose = new System.Windows.Forms.Button();
             this.webDetailsMovieVideo = new System.Windows.Forms.WebBrowser();
             this.lblDetailsMovieOverview = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblDetailsMovieTitle = new System.Windows.Forms.Label();
             this.imgDetailsPoster = new System.Windows.Forms.PictureBox();
-            this.btnClose = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.menuStrip1.SuspendLayout();
             this.pnlDetails.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picNoVideo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgDetailsPoster)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,7 +61,7 @@
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "Search";
             this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.btnAdd.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // listMoviesResults
             // 
@@ -108,21 +113,61 @@
             // 
             // pnlDetails
             // 
+            this.pnlDetails.Controls.Add(this.picNoVideo);
+            this.pnlDetails.Controls.Add(this.cbVideos);
+            this.pnlDetails.Controls.Add(this.lblVideos);
             this.pnlDetails.Controls.Add(this.btnClose);
             this.pnlDetails.Controls.Add(this.webDetailsMovieVideo);
             this.pnlDetails.Controls.Add(this.lblDetailsMovieOverview);
             this.pnlDetails.Controls.Add(this.label2);
             this.pnlDetails.Controls.Add(this.lblDetailsMovieTitle);
             this.pnlDetails.Controls.Add(this.imgDetailsPoster);
-            this.pnlDetails.Location = new System.Drawing.Point(423, 128);
+            this.pnlDetails.Location = new System.Drawing.Point(420, 99);
             this.pnlDetails.Name = "pnlDetails";
-            this.pnlDetails.Size = new System.Drawing.Size(540, 599);
+            this.pnlDetails.Size = new System.Drawing.Size(540, 632);
             this.pnlDetails.TabIndex = 5;
             this.pnlDetails.Visible = false;
             // 
+            // picNoVideo
+            // 
+            this.picNoVideo.Image = global::MyMovieLibrary.Properties.Resources.no_video;
+            this.picNoVideo.Location = new System.Drawing.Point(38, 320);
+            this.picNoVideo.Name = "picNoVideo";
+            this.picNoVideo.Size = new System.Drawing.Size(474, 285);
+            this.picNoVideo.TabIndex = 8;
+            this.picNoVideo.TabStop = false;
+            // 
+            // cbVideos
+            // 
+            this.cbVideos.FormattingEnabled = true;
+            this.cbVideos.Location = new System.Drawing.Point(82, 288);
+            this.cbVideos.Name = "cbVideos";
+            this.cbVideos.Size = new System.Drawing.Size(430, 21);
+            this.cbVideos.TabIndex = 7;
+            this.cbVideos.SelectedIndexChanged += new System.EventHandler(this.cbVideos_SelectedIndexChanged);
+            // 
+            // lblVideos
+            // 
+            this.lblVideos.AutoSize = true;
+            this.lblVideos.Location = new System.Drawing.Point(37, 291);
+            this.lblVideos.Name = "lblVideos";
+            this.lblVideos.Size = new System.Drawing.Size(39, 13);
+            this.lblVideos.TabIndex = 6;
+            this.lblVideos.Text = "Videos";
+            // 
+            // btnClose
+            // 
+            this.btnClose.Image = global::MyMovieLibrary.Properties.Resources.close;
+            this.btnClose.Location = new System.Drawing.Point(480, 20);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(32, 32);
+            this.btnClose.TabIndex = 5;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // webDetailsMovieVideo
             // 
-            this.webDetailsMovieVideo.Location = new System.Drawing.Point(38, 297);
+            this.webDetailsMovieVideo.Location = new System.Drawing.Point(38, 320);
             this.webDetailsMovieVideo.MinimumSize = new System.Drawing.Size(20, 20);
             this.webDetailsMovieVideo.Name = "webDetailsMovieVideo";
             this.webDetailsMovieVideo.Size = new System.Drawing.Size(469, 285);
@@ -130,9 +175,9 @@
             // 
             // lblDetailsMovieOverview
             // 
-            this.lblDetailsMovieOverview.Location = new System.Drawing.Point(38, 227);
+            this.lblDetailsMovieOverview.Location = new System.Drawing.Point(35, 227);
             this.lblDetailsMovieOverview.Name = "lblDetailsMovieOverview";
-            this.lblDetailsMovieOverview.Size = new System.Drawing.Size(469, 55);
+            this.lblDetailsMovieOverview.Size = new System.Drawing.Size(469, 44);
             this.lblDetailsMovieOverview.TabIndex = 3;
             this.lblDetailsMovieOverview.Text = "label3";
             // 
@@ -153,6 +198,7 @@
             this.lblDetailsMovieTitle.Size = new System.Drawing.Size(35, 13);
             this.lblDetailsMovieTitle.TabIndex = 1;
             this.lblDetailsMovieTitle.Text = "label2";
+            this.lblDetailsMovieTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // imgDetailsPoster
             // 
@@ -162,15 +208,11 @@
             this.imgDetailsPoster.TabIndex = 0;
             this.imgDetailsPoster.TabStop = false;
             // 
-            // btnClose
+            // imageList1
             // 
-            this.btnClose.Location = new System.Drawing.Point(438, 20);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 23);
-            this.btnClose.TabIndex = 5;
-            this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // Form1
             // 
@@ -190,6 +232,7 @@
             this.menuStrip1.PerformLayout();
             this.pnlDetails.ResumeLayout(false);
             this.pnlDetails.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picNoVideo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgDetailsPoster)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -212,6 +255,10 @@
         private System.Windows.Forms.Label lblDetailsMovieTitle;
         private System.Windows.Forms.PictureBox imgDetailsPoster;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.ComboBox cbVideos;
+        private System.Windows.Forms.Label lblVideos;
+        private System.Windows.Forms.PictureBox picNoVideo;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }
 

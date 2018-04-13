@@ -16,9 +16,9 @@ namespace MyMovieLibrary
     {
         APIConnection con = new APIConnection();
         SearchMovieRootResult searchResults;
+        SearchMovieResult movie;
+        MovieVideosRootResult videosResults;
         string imagePath = @"c:\MyMovieLibrary\temp";
-        // bool refreshAutoComplete = true;
-
         private const string NO_POSTER_IMAGE_PATH = @"Images\no-photo.jpg";
 
         public Form1()
@@ -27,26 +27,28 @@ namespace MyMovieLibrary
             InitializeComponent();
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void btnSearch_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
             searchResults = con.searchMovie(txtMovie.Text);
             listMoviesResults.Clear();
             moviesImages.Images.Add("No-photo", Properties.Resources.no_photo);
+            searchResults.results = searchResults.results.OrderBy(o => o.title).ToList();
             foreach (SearchMovieResult movie in searchResults.results)
             {
                 var item = listMoviesResults.Items.Add(movie.id.ToString(),movie.title,"");
                 listMoviesResults.LargeImageList = moviesImages;
                 if (!String.IsNullOrEmpty(movie.poster_path))
                 {
-                    moviesImages.Images.Add(movie.title, Image.FromFile(imagePath + movie.poster_path));
-                    item.ImageKey = movie.title;
+                    moviesImages.Images.Add(movie.id.ToString(), Image.FromFile(imagePath + movie.poster_path));
+                    item.ImageKey = movie.id.ToString();
                 }
                 else
                 {
                     item.ImageKey = "No-photo";
                 }
-
             }
+            this.Cursor = Cursors.Default;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -56,23 +58,48 @@ namespace MyMovieLibrary
 
         private void listMoviesResults_DoubleClick(object sender, EventArgs e)
         {
-            
+            this.Cursor = Cursors.WaitCursor;
+            cbVideos.Items.Clear();
             ListViewItem listItem = listMoviesResults.Items[listMoviesResults.SelectedItems[0].Index];
-            SearchMovieResult movie = searchResults.results.First(item => item.id.ToString().Equals(listItem.Name));
-            //SearchMovieResult movie = movies[0];
-            imgDetailsPoster.Image = Image.FromFile(imagePath + movie.poster_path);
+            movie = searchResults.results.First(item => item.id.ToString().Equals(listItem.Name));
+            if (String.IsNullOrEmpty(movie.poster_path))
+            {
+                imgDetailsPoster.Image = Properties.Resources.no_photo;
+            }
+            else
+            {
+                imgDetailsPoster.Image = Image.FromFile(imagePath + movie.poster_path);
+            }
             lblDetailsMovieOverview.Text = movie.overview;
             lblDetailsMovieTitle.Text = movie.title;
-            MovieVideosRootResult videosResult = con.getVideos(movie.id);
-            //string video_path = "https://www.youtube.com/watch?v=" + videosResult.results[0].key;
-            //string video_path = "https://www.youtube.com/v/" + videosResult.results[0].key + "?version=3";
-            /*string video_path = "<body><iframe width='800' height='800' src='http://www.youtube.com/embed/O6WLkyxySA0' " +
-                                "frameborder='0' allowfullscreen></iframe><body>";*/
-            //string video_path = "http://www.youtube.com/apiplayer?video_id=xitHF0IPJSQ&version=3";
-            string video_path = "https://www.youtube.com/embed/" + videosResult.results[1].key + "?autoplay=1";
+            videosResults = con.getVideos(movie.id);
+            videosResults.results = videosResults.results.OrderBy(o => o.name).ToList();
+            if (videosResults.results.Count > 0)
+            {
+                foreach (MovieVideosResult video in videosResults.results)
+                {
+                    cbVideos.Items.Add(video.name);
+                }
 
-            webDetailsMovieVideo.Navigate(video_path);
+                cbVideos.SelectedIndex = 0;
+                //string video_path = "https://www.youtube.com/embed/" + videosResults.results[0].key + "?autoplay=1";
+                string video_path = "https://www.youtube.com/embed/" + videosResults.results[0].key;
+                webDetailsMovieVideo.Navigate(video_path);
+                picNoVideo.Visible = false;
+                webDetailsMovieVideo.Visible = true;
+                cbVideos.Visible = true;
+                lblVideos.Visible = true;
+            }
+            else
+            {
+                webDetailsMovieVideo.Navigate("");
+                picNoVideo.Visible = true;
+                webDetailsMovieVideo.Visible = false;
+                cbVideos.Visible = false;
+                lblVideos.Visible = false;
+            }
             pnlDetails.Visible = true;
+            this.Cursor = Cursors.Default;
         }
 
         private void SetBrowserFeatureControlKey(string feature, string appName, uint value)
@@ -162,9 +189,21 @@ namespace MyMovieLibrary
             return mode;
         }
 
+        #region pnlDetails
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             pnlDetails.Visible = false;
+        }
+
+        #endregion pnlDetails
+
+        private void cbVideos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.WaitCursor;
+            string video_path = "https://www.youtube.com/embed/" + videosResults.results[cbVideos.SelectedIndex].key;
+            webDetailsMovieVideo.Navigate(video_path);
+            this.Cursor = Cursors.Default;
         }
     }
 }
