@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace MyMovieLibrary
 {
-    public partial class Form1 : Form
+    public partial class chkITunes : Form
     {
         APIConnection con = new APIConnection();
         SearchMovieRootResult searchResults;
@@ -20,11 +20,14 @@ namespace MyMovieLibrary
         MovieVideosRootResult videosResults;
         string imagePath = @"c:\MyMovieLibrary\temp";
         private const string NO_POSTER_IMAGE_PATH = @"Images\no-photo.jpg";
+        DBConnection DBCon;
+        private int ActualMovie;
 
-        public Form1()
+        public chkITunes()
         {
             SetBrowserFeatureControl();
             InitializeComponent();
+            DBCon = new DBConnection();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -62,6 +65,7 @@ namespace MyMovieLibrary
             cbVideos.Items.Clear();
             ListViewItem listItem = listMoviesResults.Items[listMoviesResults.SelectedItems[0].Index];
             movie = searchResults.results.First(item => item.id.ToString().Equals(listItem.Name));
+            ActualMovie = movie.id;
             if (String.IsNullOrEmpty(movie.poster_path))
             {
                 imgDetailsPoster.Image = Properties.Resources.no_photo;
@@ -204,6 +208,36 @@ namespace MyMovieLibrary
             string video_path = "https://www.youtube.com/embed/" + videosResults.results[cbVideos.SelectedIndex].key;
             webDetailsMovieVideo.Navigate(video_path);
             this.Cursor = Cursors.Default;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            pnlPlatform.Visible = true;
+            List<Platform> platforms = DBCon.getPlatforms();
+            int i = 1;
+            foreach (Platform platform in platforms)
+            {
+                CheckBox check = new CheckBox();
+                check.Name = "check_" + platform.id.ToString();
+                check.Text = platform.name;
+                check.Location = new Point(7, 22 * i);
+                platformGroup.Controls.Add(check);
+                i++;
+            }
+        }
+
+        private void bntConfirm_Click(object sender, EventArgs e)
+        {
+            int idJustInserted = DBCon.saveToLibrary(ActualMovie, 1);
+            foreach (CheckBox check in platformGroup.Controls)
+            {
+                if (check.Checked)
+                {
+                    int idPlatform = Int32.Parse(check.Name.Substring(6, check.Name.Length - 6));
+                    DBCon.insertPlatformRelation(idJustInserted, idPlatform);
+                }
+            }
+            MessageBox.Show("Movie succesfully added to your library!!");
         }
     }
 }

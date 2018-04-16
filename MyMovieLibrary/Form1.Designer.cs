@@ -1,6 +1,6 @@
 ﻿namespace MyMovieLibrary
 {
-    partial class Form1
+    partial class chkITunes
     {
         /// <summary>
         /// Required designer variable.
@@ -47,10 +47,16 @@
             this.lblDetailsMovieTitle = new System.Windows.Forms.Label();
             this.imgDetailsPoster = new System.Windows.Forms.PictureBox();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.button1 = new System.Windows.Forms.Button();
+            this.pnlPlatform = new System.Windows.Forms.Panel();
+            this.bntConfirm = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.platformGroup = new System.Windows.Forms.GroupBox();
             this.menuStrip1.SuspendLayout();
             this.pnlDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picNoVideo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgDetailsPoster)).BeginInit();
+            this.pnlPlatform.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnAdd
@@ -113,6 +119,7 @@
             // 
             // pnlDetails
             // 
+            this.pnlDetails.Controls.Add(this.button1);
             this.pnlDetails.Controls.Add(this.picNoVideo);
             this.pnlDetails.Controls.Add(this.cbVideos);
             this.pnlDetails.Controls.Add(this.lblVideos);
@@ -122,7 +129,7 @@
             this.pnlDetails.Controls.Add(this.label2);
             this.pnlDetails.Controls.Add(this.lblDetailsMovieTitle);
             this.pnlDetails.Controls.Add(this.imgDetailsPoster);
-            this.pnlDetails.Location = new System.Drawing.Point(420, 99);
+            this.pnlDetails.Location = new System.Drawing.Point(51, 99);
             this.pnlDetails.Name = "pnlDetails";
             this.pnlDetails.Size = new System.Drawing.Size(540, 632);
             this.pnlDetails.TabIndex = 5;
@@ -142,7 +149,7 @@
             this.cbVideos.FormattingEnabled = true;
             this.cbVideos.Location = new System.Drawing.Point(82, 288);
             this.cbVideos.Name = "cbVideos";
-            this.cbVideos.Size = new System.Drawing.Size(430, 21);
+            this.cbVideos.Size = new System.Drawing.Size(425, 21);
             this.cbVideos.TabIndex = 7;
             this.cbVideos.SelectedIndexChanged += new System.EventHandler(this.cbVideos_SelectedIndexChanged);
             // 
@@ -214,11 +221,61 @@
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // Form1
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(38, 46);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(107, 23);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Add to my library";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // pnlPlatform
+            // 
+            this.pnlPlatform.Controls.Add(this.platformGroup);
+            this.pnlPlatform.Controls.Add(this.btnCancel);
+            this.pnlPlatform.Controls.Add(this.bntConfirm);
+            this.pnlPlatform.Location = new System.Drawing.Point(690, 232);
+            this.pnlPlatform.Name = "pnlPlatform";
+            this.pnlPlatform.Size = new System.Drawing.Size(202, 260);
+            this.pnlPlatform.TabIndex = 6;
+            this.pnlPlatform.Visible = false;
+            // 
+            // bntConfirm
+            // 
+            this.bntConfirm.Location = new System.Drawing.Point(18, 222);
+            this.bntConfirm.Name = "bntConfirm";
+            this.bntConfirm.Size = new System.Drawing.Size(75, 23);
+            this.bntConfirm.TabIndex = 7;
+            this.bntConfirm.Text = "OK";
+            this.bntConfirm.UseVisualStyleBackColor = true;
+            this.bntConfirm.Click += new System.EventHandler(this.bntConfirm_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(99, 222);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 8;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // platformGroup
+            // 
+            this.platformGroup.Location = new System.Drawing.Point(18, 3);
+            this.platformGroup.Name = "platformGroup";
+            this.platformGroup.Size = new System.Drawing.Size(156, 213);
+            this.platformGroup.TabIndex = 7;
+            this.platformGroup.TabStop = false;
+            this.platformGroup.Text = "Select the platforms";
+            // 
+            // chkITunes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1351, 769);
+            this.Controls.Add(this.pnlPlatform);
             this.Controls.Add(this.pnlDetails);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtMovie);
@@ -226,7 +283,7 @@
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "chkITunes";
             this.Text = "Form1";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -234,6 +291,7 @@
             this.pnlDetails.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picNoVideo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgDetailsPoster)).EndInit();
+            this.pnlPlatform.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -259,6 +317,11 @@
         private System.Windows.Forms.Label lblVideos;
         private System.Windows.Forms.PictureBox picNoVideo;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Panel pnlPlatform;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button bntConfirm;
+        private System.Windows.Forms.GroupBox platformGroup;
     }
 }
 
