@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace MyMovieLibrary
 {
-    public partial class chkITunes : Form
+    public partial class AddMovieForm : Form
     {
         APIConnection con = new APIConnection();
         SearchMovieRootResult searchResults;
@@ -23,7 +23,7 @@ namespace MyMovieLibrary
         DBConnection DBCon;
         private int ActualMovie;
 
-        public chkITunes()
+        public AddMovieForm()
         {
             SetBrowserFeatureControl();
             InitializeComponent();
@@ -228,7 +228,8 @@ namespace MyMovieLibrary
 
         private void bntConfirm_Click(object sender, EventArgs e)
         {
-            int idJustInserted = DBCon.saveToLibrary(ActualMovie, 1);
+            int idJustInserted = DBCon.saveToLibrary(ActualMovie, 1, movie.poster_path.Replace(@"/",@"\"), movie.title);
+            System.IO.File.Copy(imagePath + movie.poster_path.Replace(@"/", @"\"), Constants.libraryImagesPath + movie.poster_path.Replace(@"/", @"\"), true);
             foreach (CheckBox check in platformGroup.Controls)
             {
                 if (check.Checked)
@@ -237,7 +238,13 @@ namespace MyMovieLibrary
                     DBCon.insertPlatformRelation(idJustInserted, idPlatform);
                 }
             }
+
             MessageBox.Show("Movie succesfully added to your library!!");
+            pnlDetails.Dispose();
+            pnlPlatform.Dispose();
+            this.Hide();
+            MainScreen main = new MainScreen();
+            main.Show();
         }
     }
 }

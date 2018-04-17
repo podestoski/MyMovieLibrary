@@ -35,10 +35,10 @@ namespace MyMovieLibrary
             return platforms;
         }
 
-        public int saveToLibrary(int idMovie, int idUser)
+        public int saveToLibrary(int idMovie, int idUser, string imagePath, string title)
         {
             con.Open();
-            command.CommandText = String.Format("insert into rel_user_movie(idUser,idMovie) values({0},{1})", idUser.ToString(), idMovie);
+            command.CommandText = String.Format("insert into rel_user_movie(idUser,idMovie,image,title) values({0},{1},'{2}','{3}')", idUser.ToString(), idMovie, imagePath, title);
             command.ExecuteNonQuery();
             int idJustInserted;
             command.CommandText = String.Format("Select id from rel_user_movie where idUser = {0} and idMovie = {1}", idUser.ToString(), idMovie);
@@ -55,6 +55,21 @@ namespace MyMovieLibrary
             command.CommandText = String.Format("insert into rel_movie_platform(idPlatform, idRelMovieUser) values({0},{1})",idPlatform, idUserMovie);
             command.ExecuteNonQuery();
             con.Close();
+        }
+
+        public List<LibraryMovie> getMovieLibrary(int idUser)
+        {
+            con.Open();
+            command.CommandText = String.Format("select idMovie, image, title from rel_user_movie where idUser = {0}", idUser);
+            reader = command.ExecuteReader();
+            List<LibraryMovie> libraryMovies = new List<LibraryMovie>();
+            while (reader.Read())
+            {
+                libraryMovies.Add(new LibraryMovie((int)reader["idMovie"], (string)reader["title"], (string)reader["image"]));
+            }
+            con.Close();
+            return libraryMovies;
+
         }
 
     }

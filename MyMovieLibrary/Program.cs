@@ -16,7 +16,7 @@ namespace MyMovieLibrary
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new chkITunes());
+            Application.Run(new MainScreen());
         }
     }
 }

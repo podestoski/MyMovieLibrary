@@ -1,6 +1,6 @@
 ﻿namespace MyMovieLibrary
 {
-    partial class chkITunes
+    partial class AddMovieForm
     {
         /// <summary>
         /// Required designer variable.
@@ -52,6 +52,8 @@
             this.bntConfirm = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.platformGroup = new System.Windows.Forms.GroupBox();
+            this.myLibraryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.pnlDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picNoVideo)).BeginInit();
@@ -97,6 +99,7 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.myLibraryToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -270,7 +273,21 @@
             this.platformGroup.TabStop = false;
             this.platformGroup.Text = "Select the platforms";
             // 
-            // chkITunes
+            // myLibraryToolStripMenuItem
+            // 
+            this.myLibraryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem});
+            this.myLibraryToolStripMenuItem.Name = "myLibraryToolStripMenuItem";
+            this.myLibraryToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
+            this.myLibraryToolStripMenuItem.Text = "My Library";
+            // 
+            // addToolStripMenuItem
+            // 
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addToolStripMenuItem.Text = "Add Movie";
+            // 
+            // AddMovieForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -283,7 +300,7 @@
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "chkITunes";
+            this.Name = "AddMovieForm";
             this.Text = "Form1";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -322,6 +339,8 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button bntConfirm;
         private System.Windows.Forms.GroupBox platformGroup;
+        private System.Windows.Forms.ToolStripMenuItem myLibraryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
     }
 }
 
