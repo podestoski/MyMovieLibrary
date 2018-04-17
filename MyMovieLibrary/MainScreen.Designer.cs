@@ -52,7 +52,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1025, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1351, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -93,7 +93,7 @@
             this.libraryList.Location = new System.Drawing.Point(14, 116);
             this.libraryList.MultiSelect = false;
             this.libraryList.Name = "libraryList";
-            this.libraryList.Size = new System.Drawing.Size(996, 641);
+            this.libraryList.Size = new System.Drawing.Size(1322, 641);
             this.libraryList.TabIndex = 5;
             this.libraryList.UseCompatibleStateImageBehavior = false;
             this.libraryList.DoubleClick += new System.EventHandler(this.libraryList_DoubleClick);
@@ -141,7 +141,7 @@
             this.label1.BackColor = System.Drawing.Color.White;
             this.label1.Font = new System.Drawing.Font("Calisto MT", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label1.Location = new System.Drawing.Point(382, 43);
+            this.label1.Location = new System.Drawing.Point(503, 40);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(265, 54);
             this.label1.TabIndex = 7;
@@ -153,7 +153,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1025, 769);
+            this.ClientSize = new System.Drawing.Size(1351, 769);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pnlPlatforms);
             this.Controls.Add(this.libraryList);
@@ -161,6 +161,7 @@
             this.Font = new System.Drawing.Font("Calisto MT", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainScreen";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "My Movie Library";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

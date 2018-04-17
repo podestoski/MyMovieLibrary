@@ -146,7 +146,7 @@
             this.pnlDetails.Controls.Add(this.label2);
             this.pnlDetails.Controls.Add(this.lblDetailsMovieTitle);
             this.pnlDetails.Controls.Add(this.imgDetailsPoster);
-            this.pnlDetails.Location = new System.Drawing.Point(51, 99);
+            this.pnlDetails.Location = new System.Drawing.Point(414, 99);
             this.pnlDetails.Name = "pnlDetails";
             this.pnlDetails.Size = new System.Drawing.Size(540, 632);
             this.pnlDetails.TabIndex = 5;
@@ -253,7 +253,7 @@
             this.pnlPlatform.Controls.Add(this.platformGroup);
             this.pnlPlatform.Controls.Add(this.btnCancel);
             this.pnlPlatform.Controls.Add(this.bntConfirm);
-            this.pnlPlatform.Location = new System.Drawing.Point(784, 222);
+            this.pnlPlatform.Location = new System.Drawing.Point(1114, 471);
             this.pnlPlatform.Name = "pnlPlatform";
             this.pnlPlatform.Size = new System.Drawing.Size(202, 260);
             this.pnlPlatform.TabIndex = 6;
@@ -276,6 +276,7 @@
             this.btnCancel.TabIndex = 8;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // bntConfirm
             // 
@@ -301,6 +302,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "AddMovieForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

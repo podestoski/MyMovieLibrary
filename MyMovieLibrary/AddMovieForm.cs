@@ -242,12 +242,22 @@ namespace MyMovieLibrary
             }
 
             //MessageBox.Show("Movie succesfully added to your library!!");
-            
+            pnlDetails.Dispose();
+            pnlPlatform.Dispose();
             MessageDialog messageDialog = new MessageDialog(Properties.Resources.check, "Movie succesfully added to your library!!");
             messageDialog.ShowDialog();
             this.Dispose();
             MainScreen main = new MainScreen();
             main.Show();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            pnlPlatform.Hide();
+            foreach (CheckBox check in platformGroup.Controls)
+            {
+                check.Checked = false;
+            }
         }
     }
 }
