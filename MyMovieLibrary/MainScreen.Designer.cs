@@ -36,7 +36,12 @@
             this.moviesImages = new System.Windows.Forms.ImageList(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.libraryList = new System.Windows.Forms.ListView();
+            this.pnlPlatforms = new System.Windows.Forms.Panel();
+            this.listPlatforms = new System.Windows.Forms.ListView();
+            this.platformsImages = new System.Windows.Forms.ImageList(this.components);
+            this.btnClose = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
+            this.pnlPlatforms.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -86,16 +91,54 @@
             // libraryList
             // 
             this.libraryList.Location = new System.Drawing.Point(12, 27);
+            this.libraryList.MultiSelect = false;
             this.libraryList.Name = "libraryList";
             this.libraryList.Size = new System.Drawing.Size(1327, 730);
             this.libraryList.TabIndex = 5;
             this.libraryList.UseCompatibleStateImageBehavior = false;
+            this.libraryList.DoubleClick += new System.EventHandler(this.libraryList_DoubleClick);
+            // 
+            // pnlPlatforms
+            // 
+            this.pnlPlatforms.Controls.Add(this.btnClose);
+            this.pnlPlatforms.Controls.Add(this.listPlatforms);
+            this.pnlPlatforms.Location = new System.Drawing.Point(195, 176);
+            this.pnlPlatforms.Name = "pnlPlatforms";
+            this.pnlPlatforms.Size = new System.Drawing.Size(697, 397);
+            this.pnlPlatforms.TabIndex = 6;
+            this.pnlPlatforms.Visible = false;
+            // 
+            // listPlatforms
+            // 
+            this.listPlatforms.Dock = System.Windows.Forms.DockStyle.Left;
+            this.listPlatforms.Location = new System.Drawing.Point(0, 0);
+            this.listPlatforms.Name = "listPlatforms";
+            this.listPlatforms.Size = new System.Drawing.Size(647, 397);
+            this.listPlatforms.TabIndex = 0;
+            this.listPlatforms.UseCompatibleStateImageBehavior = false;
+            // 
+            // platformsImages
+            // 
+            this.platformsImages.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.platformsImages.ImageSize = new System.Drawing.Size(64, 64);
+            this.platformsImages.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // btnClose
+            // 
+            this.btnClose.Image = global::MyMovieLibrary.Properties.Resources.close;
+            this.btnClose.Location = new System.Drawing.Point(653, 3);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(32, 32);
+            this.btnClose.TabIndex = 7;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1351, 769);
+            this.Controls.Add(this.pnlPlatforms);
             this.Controls.Add(this.libraryList);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -103,6 +146,7 @@
             this.Text = "My Movie Library";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.pnlPlatforms.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -116,6 +160,10 @@
         private System.Windows.Forms.ToolStripMenuItem myLibraryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
         private System.Windows.Forms.ListView libraryList;
+        private System.Windows.Forms.Panel pnlPlatforms;
+        private System.Windows.Forms.ListView listPlatforms;
+        private System.Windows.Forms.ImageList platformsImages;
+        private System.Windows.Forms.Button btnClose;
     }
 }
 

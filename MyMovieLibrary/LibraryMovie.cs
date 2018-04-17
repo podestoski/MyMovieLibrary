@@ -9,21 +9,20 @@ namespace MyMovieLibrary
     public class LibraryMovie
     {
         public int id;
+        public int idMovie;
         public string title;
         public string image_path;
-        List<int> platforms = new List<int>();
+        public List<string> platforms = new List<string>();
+
+        public LibraryMovie()
+        {}
         
-        public LibraryMovie(int id, string title, string path)
+        public LibraryMovie(int id, int idMovie, string title, string path)
         {
             this.id = id;
+            this.idMovie = idMovie;
             this.title = title;
             this.image_path = path;
         }
-
-        public LibraryMovie()
-        {
-                
-        }
-
     }
 }

@@ -35,6 +35,7 @@ namespace MyMovieLibrary
             this.Cursor = Cursors.WaitCursor;
             searchResults = con.searchMovie(txtMovie.Text);
             listMoviesResults.Clear();
+            moviesImages.Images.Clear();
             moviesImages.Images.Add("No-photo", Properties.Resources.no_photo);
             searchResults.results = searchResults.results.OrderBy(o => o.title).ToList();
             foreach (SearchMovieResult movie in searchResults.results)

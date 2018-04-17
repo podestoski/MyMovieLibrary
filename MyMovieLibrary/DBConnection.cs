@@ -60,14 +60,26 @@ namespace MyMovieLibrary
         public List<LibraryMovie> getMovieLibrary(int idUser)
         {
             con.Open();
-            command.CommandText = String.Format("select idMovie, image, title from rel_user_movie where idUser = {0}", idUser);
+            command.CommandText = String.Format("select id,idMovie, image, title from rel_user_movie where idUser = {0}", idUser);
             reader = command.ExecuteReader();
             List<LibraryMovie> libraryMovies = new List<LibraryMovie>();
             while (reader.Read())
             {
-                libraryMovies.Add(new LibraryMovie((int)reader["idMovie"], (string)reader["title"], (string)reader["image"]));
+                LibraryMovie libraryMovie = new LibraryMovie((int)reader["id"], (int)reader["idMovie"], (string)reader["title"], (string)reader["image"]);
+                libraryMovies.Add(libraryMovie);
+            }
+            foreach (LibraryMovie libraryMovie in libraryMovies)
+            {
+                reader.Close();
+                command.CommandText = String.Format("select name from rel_movie_platform rel join cat_platform cat on rel.idPlatform = cat.id where idRelMovieUser = {0}", libraryMovie.id.ToString());
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    libraryMovie.platforms.Add((string)reader["name"]);
+                }
             }
             con.Close();
+            
             return libraryMovies;
 
         }

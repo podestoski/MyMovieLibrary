@@ -108,9 +108,17 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Images\blu-ray.png" />
     <Content Include="Images\close.png" />
+    <Content Include="Images\digital.png" />
+    <Content Include="Images\dvd.png" />
+    <Content Include="Images\google-play.png" />
+    <Content Include="Images\itunes.png" />
+    <Content Include="Images\netflix.png" />
     <Content Include="Images\no-photo.jpg" />
     <Content Include="Images\no-video.jpg" />
+    <Content Include="Images\playstation.png" />
+    <Content Include="Images\xbox.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
