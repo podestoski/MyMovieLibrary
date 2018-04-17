@@ -9,5 +9,6 @@ namespace MyMovieLibrary
     public class Constants
     {
         public static readonly string libraryImagesPath = @"c:\MyMovieLibrary\library";
+        public static readonly string tempImagesPath = @"c:\MyMovieLibrary\temp";
     }
 }

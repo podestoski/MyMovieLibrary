@@ -214,6 +214,7 @@ namespace MyMovieLibrary
         private void button1_Click(object sender, EventArgs e)
         {
             pnlPlatform.Visible = true;
+            pnlPlatform.Location = new Point(Cursor.Position.X - 50, Cursor.Position.Y - 50);
             List<Platform> platforms = DBCon.getPlatforms();
             int i = 1;
             foreach (Platform platform in platforms)
@@ -240,10 +241,11 @@ namespace MyMovieLibrary
                 }
             }
 
-            MessageBox.Show("Movie succesfully added to your library!!");
-            pnlDetails.Dispose();
-            pnlPlatform.Dispose();
-            this.Hide();
+            //MessageBox.Show("Movie succesfully added to your library!!");
+            
+            MessageDialog messageDialog = new MessageDialog(Properties.Resources.check, "Movie succesfully added to your library!!");
+            messageDialog.ShowDialog();
+            this.Dispose();
             MainScreen main = new MainScreen();
             main.Show();
         }

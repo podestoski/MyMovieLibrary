@@ -34,9 +34,12 @@
             this.txtMovie = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.myLibraryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.moviesImages = new System.Windows.Forms.ImageList(this.components);
             this.pnlDetails = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.picNoVideo = new System.Windows.Forms.PictureBox();
             this.cbVideos = new System.Windows.Forms.ComboBox();
             this.lblVideos = new System.Windows.Forms.Label();
@@ -47,13 +50,10 @@
             this.lblDetailsMovieTitle = new System.Windows.Forms.Label();
             this.imgDetailsPoster = new System.Windows.Forms.PictureBox();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.button1 = new System.Windows.Forms.Button();
             this.pnlPlatform = new System.Windows.Forms.Panel();
-            this.bntConfirm = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.platformGroup = new System.Windows.Forms.GroupBox();
-            this.myLibraryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.bntConfirm = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.pnlDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picNoVideo)).BeginInit();
@@ -107,6 +107,20 @@
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
+            // myLibraryToolStripMenuItem
+            // 
+            this.myLibraryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem});
+            this.myLibraryToolStripMenuItem.Name = "myLibraryToolStripMenuItem";
+            this.myLibraryToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
+            this.myLibraryToolStripMenuItem.Text = "My Library";
+            // 
+            // addToolStripMenuItem
+            // 
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.addToolStripMenuItem.Text = "Add Movie";
+            // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
@@ -137,6 +151,16 @@
             this.pnlDetails.Size = new System.Drawing.Size(540, 632);
             this.pnlDetails.TabIndex = 5;
             this.pnlDetails.Visible = false;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(38, 46);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(107, 23);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Add to my library";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // picNoVideo
             // 
@@ -224,45 +248,16 @@
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(38, 46);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(107, 23);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Add to my library";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // pnlPlatform
             // 
             this.pnlPlatform.Controls.Add(this.platformGroup);
             this.pnlPlatform.Controls.Add(this.btnCancel);
             this.pnlPlatform.Controls.Add(this.bntConfirm);
-            this.pnlPlatform.Location = new System.Drawing.Point(690, 232);
+            this.pnlPlatform.Location = new System.Drawing.Point(784, 222);
             this.pnlPlatform.Name = "pnlPlatform";
             this.pnlPlatform.Size = new System.Drawing.Size(202, 260);
             this.pnlPlatform.TabIndex = 6;
             this.pnlPlatform.Visible = false;
-            // 
-            // bntConfirm
-            // 
-            this.bntConfirm.Location = new System.Drawing.Point(18, 222);
-            this.bntConfirm.Name = "bntConfirm";
-            this.bntConfirm.Size = new System.Drawing.Size(75, 23);
-            this.bntConfirm.TabIndex = 7;
-            this.bntConfirm.Text = "OK";
-            this.bntConfirm.UseVisualStyleBackColor = true;
-            this.bntConfirm.Click += new System.EventHandler(this.bntConfirm_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(99, 222);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 8;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // platformGroup
             // 
@@ -273,19 +268,24 @@
             this.platformGroup.TabStop = false;
             this.platformGroup.Text = "Select the platforms";
             // 
-            // myLibraryToolStripMenuItem
+            // btnCancel
             // 
-            this.myLibraryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addToolStripMenuItem});
-            this.myLibraryToolStripMenuItem.Name = "myLibraryToolStripMenuItem";
-            this.myLibraryToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
-            this.myLibraryToolStripMenuItem.Text = "My Library";
+            this.btnCancel.Location = new System.Drawing.Point(99, 222);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 8;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
             // 
-            // addToolStripMenuItem
+            // bntConfirm
             // 
-            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.addToolStripMenuItem.Text = "Add Movie";
+            this.bntConfirm.Location = new System.Drawing.Point(18, 222);
+            this.bntConfirm.Name = "bntConfirm";
+            this.bntConfirm.Size = new System.Drawing.Size(75, 23);
+            this.bntConfirm.TabIndex = 7;
+            this.bntConfirm.Text = "OK";
+            this.bntConfirm.UseVisualStyleBackColor = true;
+            this.bntConfirm.Click += new System.EventHandler(this.bntConfirm_Click);
             // 
             // AddMovieForm
             // 

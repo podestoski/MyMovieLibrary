@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -8,7 +9,7 @@ namespace MyMovieLibrary
 {
     public partial class MainScreen : Form
     {
-        APIConnection con = new APIConnection();
+        APIConnection APICon = new APIConnection();
         DBConnection DBCon = new DBConnection();
         List<LibraryMovie> libraryMovies = new List<LibraryMovie>();
         LibraryMovie actualMovie;
@@ -16,14 +17,19 @@ namespace MyMovieLibrary
         public MainScreen()
         {
             InitializeComponent();
+            
             libraryMovies = DBCon.getMovieLibrary(1);
             libraryMovies = libraryMovies.OrderBy(o => o.title).ToList();
+
             foreach (LibraryMovie libraryMovie in libraryMovies)
             {
                 var item = libraryList.Items.Add(libraryMovie.idMovie.ToString(), libraryMovie.title, "");
-                libraryList.LargeImageList = moviesImages;
                 if (!String.IsNullOrEmpty(libraryMovie.image_path))
                 {
+                    if (!File.Exists(Constants.libraryImagesPath + libraryMovie.image_path))
+                    {
+                        APICon.downloadImage(libraryMovie.image_path, Constants.libraryImagesPath, libraryMovie.image_path);
+                    }
                     moviesImages.Images.Add(libraryMovie.idMovie.ToString(), Image.FromFile(Constants.libraryImagesPath + libraryMovie.image_path));
                     item.ImageKey = libraryMovie.idMovie.ToString();
                 }
@@ -33,6 +39,10 @@ namespace MyMovieLibrary
                 }
             }
         }
+
+        
+
+        #region Events
 
         private void addToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
@@ -60,7 +70,10 @@ namespace MyMovieLibrary
                 platformsImages.Images.Add(platform, image);
                 item.ImageKey = platform;
             }
+            pnlPlatforms.Location = new Point(Cursor.Position.X - 50, Cursor.Position.Y - 50);
             pnlPlatforms.Visible = true;
         }
+
+        #endregion
     }
 }
